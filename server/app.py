@@ -1,12 +1,15 @@
 import os
 
+#to run files from our .env file
 from dotenv import load_dotenv
 load_dotenv()
 
+#normal imports
 from flask import Flask, jsonify, request, make_response, render_template
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 
+#import models
 from models import db, Bird
 
 app = Flask(
@@ -16,6 +19,7 @@ app = Flask(
     template_folder='../client/build'
 )
 
+#we can import any of our .env variables with os.environ.get()
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
